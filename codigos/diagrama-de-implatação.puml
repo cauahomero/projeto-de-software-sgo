@@ -1,0 +1,22 @@
+@startuml
+left to right direction
+
+actor Administrador
+actor "Comitê Organizador" as ComiteOrganizador
+
+rectangle "Sistema de Gestão das Olimpíadas (SGO)" {
+usecase "Cadastrar Competição" as UC_CadastrarCompeticao
+usecase "Inscrever Atleta" as UC_InscreverAtleta
+usecase "Alocar Local para Competição" as UC_AlocarLocal
+usecase "Registrar Resultados da Competição" as UC_RegistrarResultados
+usecase "Gerar Relatório de Medalhas" as UC_GerarRelatorioMedalhas
+UC_CadastrarCompeticao ..> UC_AlocarLocal : <<include>>
+}
+
+Administrador --> UC_CadastrarCompeticao
+Administrador --> UC_RegistrarResultados
+
+ComiteOrganizador --> UC_InscreverAtleta
+ComiteOrganizador --> UC_RegistrarResultados
+ComiteOrganizador --> UC_GerarRelatorioMedalhas
+@enduml

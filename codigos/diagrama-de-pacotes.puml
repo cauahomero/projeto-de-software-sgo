@@ -1,0 +1,21 @@
+@startuml
+skinparam packageStyle rectangle
+
+package Model {
+' Classes não são mostradas neste diagrama, apenas a existência do pacote.
+}
+
+package Service {
+' Classes não são mostradas neste diagrama, apenas a existência do pacote.
+}
+
+package Reports {
+' Classes não são mostradas neste diagrama, apenas a existência do pacote.
+}
+
+' Dependências entre os pacotes
+Service .down.> Model : <<uses>>
+Reports .down.> Model : <<uses>>
+Reports .down.> Service : <<uses>> (e.g., para dados processados)
+
+@enduml

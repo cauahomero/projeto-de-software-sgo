@@ -1,0 +1,31 @@
+@startuml
+skinparam componentStyle uml2
+
+package "Camada de Apresentação" {
+    [UI do SGO (Web/Mobile)] as UI
+}
+
+package "Camada de Negócio" {
+    component "Módulo de Inscrições" as InscricaoComp
+    component "Módulo de Alocação" as AlocacaoComp
+    component "Módulo de Relatórios" as RelatorioComp
+    component "Módulo de Competições" as GestaoComp
+}
+
+database "Database SGO (PostgreSQL)" as Database
+
+' Fluxo de interações
+UI --> GestaoComp : gerencia provas e resultados
+UI --> InscricaoComp : realiza inscrições
+UI --> AlocacaoComp : reserva locais
+UI --> RelatorioComp : solicita quadro de medalhas
+
+' Acesso a dados
+InscricaoComp ..> Database : consulta/salva
+AlocacaoComp ..> Database : consulta disponibilidade
+RelatorioComp ..> Database : lê resultados
+GestaoComp ..> Database : grava competições
+
+' Dependência interna
+InscricaoComp ..> GestaoComp : verifica modalidades
+@enduml

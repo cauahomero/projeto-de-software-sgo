@@ -1,0 +1,80 @@
+@startuml
+skinparam ClassAttributeIconSize 0
+
+package "Model" {
+    class Competicao {
+        - id: String
+        + modalidade: String
+        + data: Date
+        + hora: Time
+        + status: String
+    }
+
+    class Atleta {
+        - id: String
+        + nome: String
+        + dataNascimento: Date
+        + nacionalidade: String
+    }
+
+    class Local {
+        - id: String
+        + nome: String
+        + capacidade: int
+        + disponibilidade: String
+    }
+
+    class Resultado {
+        - id: String
+        + posicao: int
+        + tempoOuPontuacao: String
+    }
+
+    class Pais {
+        - id: String
+        + nome: String
+        + sigla: String
+    }
+
+    ' Relacionamentos
+    Competicao "1" o-- "1" Local : ocorre em
+    Competicao "1" *-- "*" Atleta : tem inscrito
+    Atleta "1" --> "1" Pais : representa
+    Competicao "1" *-- "3" Resultado : gera
+    Resultado "1" --> "1" Atleta : concedido a
+}
+
+package "Service" {
+    class CompeticaoService {
+        + cadastrarCompeticao(c: Competicao): boolean
+        + buscarCompeticao(id: String): Competicao
+    }
+
+    class InscricaoService {
+        + inscreverAtleta(a: Atleta, c: Competicao): boolean
+        + verificarConflitoPais(a: Atleta, c: Competicao): boolean
+    }
+
+    class AlocacaoService {
+        + alocarLocal(c: Competicao, l: Local): boolean
+        + verificarConflitoHorario(c: Competicao, l: Local): boolean
+    }
+
+    class ResultadoService {
+        + registrarResultado(r: Resultado, c: Competicao): boolean
+    }
+}
+
+package "Reports" {
+    class RelatorioService {
+        + gerarQuadroMedalhas(): Map
+        + gerarRelatorioAtletas(c: Competicao): List
+    }
+}
+
+' Dependências entre pacotes
+Service ..> Model
+Reports ..> Model
+Reports ..> Service
+
+@enduml
