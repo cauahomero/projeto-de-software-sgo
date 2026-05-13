@@ -36,7 +36,7 @@ Demonstra a organização modular do software e a comunicação entre os módulo
 
 ### 5. Diagrama de Implantação
 Exibe a arquitetura física e a distribuição do sistema entre dispositivos de usuário e servidores.
-<img width="500px" height="500px" src="imagens/diagrama-de-implantacao.png">
+<img width="500px" height="500px" src="imagens/diagrama-de-implantação.png">
 
 ---
 
