@@ -46,4 +46,5 @@ Exibe a arquitetura física e a distribuição do sistema entre dispositivos de 
 *   **Markdown** (Documentação)
 
 ---
-*Projeto acadêmico desenvolvido para a disciplina de Modelagem de Sistemas.*
+Projeto de Software
+Cauã Homero
